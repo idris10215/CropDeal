@@ -110,3 +110,14 @@
 * **Key Learning:** Learned how to encode Claims (User info) into a signed token and configure the Middleware Pipeline to validate incoming requests.
 
 
+## **Phase 2: Crop Microservice**
+
+### **Step 13: Project Initialization**
+* **Action:** Created a new Web API project named `CropService`.
+* **Purpose:** To decouple the marketplace inventory logic from the authentication logic.
+* **Key Learning:** Applying **Single Responsibility Principle (SRP)** at the architectural level by separating business domains into different projects.
+
+### **Step 14: Data Modeling**
+* **Action:** Defined the `Crop.cs` model and `CropDbContext`.
+* **Purpose:** To manage crop-specific data (name, price, quantity) independently of user profiles.
+* **Relationship:** Linking to the Identity Service via `FarmerEmail` as a logical foreign key.
