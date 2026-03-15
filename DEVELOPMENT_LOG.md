@@ -72,3 +72,15 @@
     ```
 * **Validation:** Verified the creation of the `CropDealDB` and the `Users` table using the SQL Server Object Explorer.
 
+### **Step 7: The Presentation Layer (Auth Controller)**
+* **Action:** Created `AuthController.cs` and implemented the `Register` endpoint.
+* **Definition:** Implementing **RESTful API Endpoints**.
+* **Purpose:** To provide a public interface for the "Register" functionality. The controller receives user data via an HTTP POST request, utilizes the injected `AppDbContext` to persist the data to SQL Server, and returns a success status code.
+* **Key Learning:** Used **Dependency Injection** to access the database and **Asynchronous Programming** (`async/await`) to ensure high-performance data processing.
+
+### **Step 8: End-to-End Verification**
+* **Action:** Performed a live registration test using Swagger UI.
+* **Process:** 1. Sent an HTTP POST request to `/api/auth/register` with a JSON payload.
+    2. Verified the response returned a `200 OK` status and the echoed User object.
+    3. Confirmed the data persistence by querying the `Users` table in SQL Server.
+* **Result:** Successfully confirmed that the Identity Microservice can receive, process, and store new user accounts.
