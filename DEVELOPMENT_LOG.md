@@ -84,3 +84,29 @@
     2. Verified the response returned a `200 OK` status and the echoed User object.
     3. Confirmed the data persistence by querying the `Users` table in SQL Server.
 * **Result:** Successfully confirmed that the Identity Microservice can receive, process, and store new user accounts.
+
+### **Step 9: Security Layer (Password Hashing)**
+* **Action:** Integrated `BCrypt.Net-Next` library.
+* **Definition:** **One-way Cryptographic Hashing**.
+* **Purpose:** To ensure that user passwords are never stored in plain text, protecting user privacy even in the event of a database breach.
+* **Key Learning:** Learned how to use `BCrypt.HashPassword` to scramble data before saving.
+
+### **Step 10: Authentication Logic (Login DTO & Verification)**
+* **Action:** Created `LoginDto.cs` and implemented the `Login` endpoint.
+* **Definition:** **Credential Verification**.
+* **Purpose:** To validate incoming user credentials against the stored hashes in the database.
+* **Key Learning:** Used `BCrypt.Verify` to compare plain-text input with hashed database records safely.
+
+### **Step 11: JWT Implementation (Identity Tokens)**
+* **Action:** Added `CreateToken` helper method and injected `IConfiguration` into the `AuthController`.
+* **Definition:** **Bearer Token Generation**.
+* **Purpose:** To issue a signed digital "badge" (JWT) containing user claims (Name, Email, Role) that can be verified by other microservices.
+* **Key Learning:** Understood the structure of a JWT (Header, Payload, Signature) and how to sign it using a Symmetric Security Key.
+
+### **Step 12: JWT Middleware and Token Generation**
+* **Action:** Implemented `CreateToken` helper and configured JWT Authentication in `Program.cs`.
+* **Definition:** **Stateless Authentication**.
+* **Purpose:** To allow the system to verify users without constant database lookups. 
+* **Key Learning:** Learned how to encode Claims (User info) into a signed token and configure the Middleware Pipeline to validate incoming requests.
+
+
