@@ -121,3 +121,8 @@
 * **Action:** Defined the `Crop.cs` model and `CropDbContext`.
 * **Purpose:** To manage crop-specific data (name, price, quantity) independently of user profiles.
 * **Relationship:** Linking to the Identity Service via `FarmerEmail` as a logical foreign key.
+
+### **Step 15: Crop Service Infrastructure**
+* **Action:** Configured `Program.cs` with SQL Server and JWT Bearer authentication.
+* **Purpose:** To prepare the service for secure data persistence.
+* **Key Learning:** Learned how to resolve "DbContext" instantiation errors by correctly registering services in the Dependency Injection container.
