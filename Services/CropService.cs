@@ -15,8 +15,6 @@ namespace CropDeal.Services
         public async Task<IEnumerable<CropReadDto>> GetCatalogAsync()
         {
             var crops = await _cropRepo.GetAllCropsAsync();
-            
-            // Converting Entity list to DTO list
             return crops.Select(c => new CropReadDto
             {
                 Id = c.Id,
@@ -25,7 +23,7 @@ namespace CropDeal.Services
                 Price = c.Price,
                 Quantity = c.Quantity,
                 SellerName = c.Seller?.FullName ?? "Unknown"
-            }).ToList(); // .ToList() ensures the types match exactly
+            }).ToList();
         }
 
         public async Task AddCropAsync(CropCreateDto dto)
@@ -38,9 +36,32 @@ namespace CropDeal.Services
                 Quantity = dto.Quantity,
                 SellerId = dto.SellerId
             };
-
             await _cropRepo.AddCropAsync(crop);
             await _cropRepo.SaveChangesAsync();
+        }
+
+        public async Task<bool> UpdateCropAsync(int id, CropCreateDto dto)
+        {
+            var crop = await _cropRepo.GetCropByIdAsync(id);
+            if (crop == null) return false;
+
+            crop.Name = dto.Name;
+            crop.Category = dto.Category;
+            crop.Price = dto.Price;
+            crop.Quantity = dto.Quantity;
+
+            await _cropRepo.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> DeleteCropAsync(int id)
+        {
+            var crop = await _cropRepo.GetCropByIdAsync(id);
+            if (crop == null) return false;
+
+            _cropRepo.DeleteCrop(crop);
+            await _cropRepo.SaveChangesAsync();
+            return true;
         }
     }
 }

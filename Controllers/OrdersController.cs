@@ -21,5 +21,17 @@ namespace CropDeal.Controllers
             var result = await _orderService.PlaceOrderAsync(dto);
             return Ok(new { message = result });
         }
-    }
+
+        [HttpGet("buyer/{buyerId}")]
+        public async Task<IActionResult> GetBuyerOrders(int buyerId) 
+            => Ok(await _orderService.GetBuyerOrdersAsync(buyerId));
+
+        [HttpGet("farmer/{farmerId}")]
+        public async Task<IActionResult> GetFarmerOrders(int farmerId) 
+            => Ok(await _orderService.GetFarmerOrdersAsync(farmerId));
+
+        [HttpPut("approve/{orderId}")]
+        public async Task<IActionResult> ApproveOrder(int orderId) 
+            => Ok(await _orderService.ApproveOrderAsync(orderId));
+            }
 }

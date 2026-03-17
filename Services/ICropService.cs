@@ -7,5 +7,8 @@ namespace CropDeal.Services
         Task<IEnumerable<CropReadDto>> GetCatalogAsync();
         
         Task AddCropAsync(CropCreateDto dto);
+
+        Task<bool> UpdateCropAsync(int id, CropCreateDto dto);
+        Task<bool> DeleteCropAsync(int id);
     }
 }

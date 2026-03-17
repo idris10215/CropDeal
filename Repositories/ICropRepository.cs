@@ -4,8 +4,10 @@ namespace CropDeal.Repositories
 {
     public interface ICropRepository
     {
-        Task<IEnumerable<Crop>> GetAllCropsAsync();
+        Task<IEnumerable<Crop>> GetAllCropsAsync(); // Simplified
         Task AddCropAsync(Crop crop);
         Task SaveChangesAsync();
+        Task<Crop?> GetCropByIdAsync(int id);
+        void DeleteCrop(Crop crop);
     }
 }

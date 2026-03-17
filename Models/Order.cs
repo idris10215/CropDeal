@@ -6,6 +6,10 @@ public class Order
     public DateTime OrderDate { get; set; } = DateTime.Now;
     public decimal TotalAmount { get; set; }
     public string Status { get; set; } = "Pending";
+    
+    // --- ADD THIS LINE ---
+    public int Quantity { get; set; } 
+    // ---------------------
 
     public int CropId { get; set; }
     public Crop? Crop { get; set; }

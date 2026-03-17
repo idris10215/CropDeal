@@ -9,13 +9,14 @@ namespace CropDeal.Repositories
         private readonly AppDbContext _context;
         public CropRepository(AppDbContext context) { _context = context; }
 
-        public async Task<IEnumerable<Crop>> GetAllCropsAsync() 
-            => await _context.Crops.Include(c => c.Seller).ToListAsync();
+        public async Task<IEnumerable<Crop>> GetAllCropsAsync()
+        {
+            return await _context.Crops.Include(c => c.Seller).ToListAsync();
+        }
 
-        public async Task AddCropAsync(Crop crop) 
-            => await _context.Crops.AddAsync(crop);
-
-        public async Task SaveChangesAsync() 
-            => await _context.SaveChangesAsync();
+        public async Task AddCropAsync(Crop crop) => await _context.Crops.AddAsync(crop);
+        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
+        public async Task<Crop?> GetCropByIdAsync(int id) => await _context.Crops.FindAsync(id);
+        public void DeleteCrop(Crop crop) => _context.Crops.Remove(crop);
     }
 }

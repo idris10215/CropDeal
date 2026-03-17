@@ -36,5 +36,23 @@ namespace CropDeal.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCrop(int id, CropCreateDto cropDto)
+        {
+            var success = await _cropService.UpdateCropAsync(id, cropDto);
+            if (!success) return NotFound("Crop not found.");
+            
+            return Ok(new { message = "Crop updated successfully!" });
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCrop(int id)
+        {
+            var success = await _cropService.DeleteCropAsync(id);
+            if (!success) return NotFound("Crop not found.");
+
+            return Ok(new { message = "Crop deleted successfully!" });
+        }
     }
 }
