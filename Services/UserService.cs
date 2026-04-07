@@ -1,5 +1,5 @@
 using CropDeal.Models;
-using CropDeal.Repositories; // Linking to your Repo folder
+using CropDeal.Repositories; 
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

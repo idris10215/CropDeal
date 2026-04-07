@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using CropDeal.Models;
-using CropDeal.Services; // Ensure this matches your Service namespace
+using CropDeal.Services; 
 
 namespace CropDeal.Controllers
 {
@@ -10,7 +10,6 @@ namespace CropDeal.Controllers
     {
         private readonly IUserService _userService;
 
-        // The Controller only talks to the Service
         public AuthController(IUserService userService)
         {
             _userService = userService;

@@ -8,7 +8,6 @@ public class Crop
     public decimal Price { get; set; }
     public int Quantity { get; set; }
 
-    // Relationship: The User (Farmer) who posted this crop
     public int SellerId { get; set; } 
     public User? Seller { get; set; }
 }

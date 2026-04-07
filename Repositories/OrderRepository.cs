@@ -17,30 +17,28 @@ public class OrderRepository : IOrderRepository
 
     public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
 
-    // 1. Get all orders placed by a specific Buyer
+
     public async Task<IEnumerable<Order>> GetOrdersByBuyerIdAsync(int buyerId)
     {
         return await _context.Orders
-            .Include(o => o.Crop) // So the buyer can see the Crop Name
+            .Include(o => o.Crop) 
             .Where(o => o.BuyerId == buyerId)
             .ToListAsync();
     }
 
-    // 2. Get all orders for crops belonging to a specific Farmer
     public async Task<IEnumerable<Order>> GetOrdersByFarmerIdAsync(int farmerId)
     {
         return await _context.Orders
             .Include(o => o.Crop)
-            .Include(o => o.Buyer) // So the farmer knows who is buying
+            .Include(o => o.Buyer) 
             .Where(o => o.Crop.SellerId == farmerId)
             .ToListAsync();
     }
 
-    // 3. Find a specific order (needed for the Approval step)
     public async Task<Order?> GetOrderByIdAsync(int id)
     {
         return await _context.Orders
-            .Include(o => o.Crop) // Include crop so we can check/update quantity later
+            .Include(o => o.Crop) 
             .FirstOrDefaultAsync(o => o.Id == id);
     }
 }

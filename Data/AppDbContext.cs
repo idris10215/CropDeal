@@ -13,26 +13,21 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // 1. Fix Decimal Precision
         modelBuilder.Entity<Crop>().Property(c => c.Price).HasColumnType("decimal(18,2)");
         modelBuilder.Entity<Order>().Property(o => o.TotalAmount).HasColumnType("decimal(18,2)");
 
-        // 2. Seller -> Crop Relationship
         modelBuilder.Entity<Crop>()
             .HasOne(c => c.Seller)
             .WithMany(u => u.Crops)
             .HasForeignKey(c => c.SellerId)
-            .OnDelete(DeleteBehavior.Cascade); // Keeping cascade here is fine
+            .OnDelete(DeleteBehavior.Cascade); 
 
-        // 3. THE FIX: Buyer -> Order Relationship
-        // We change this to 'Restrict' or 'NoAction' to stop the circular path error
         modelBuilder.Entity<Order>()
             .HasOne(o => o.Buyer)
             .WithMany() 
             .HasForeignKey(o => o.BuyerId)
             .OnDelete(DeleteBehavior.Restrict); 
 
-        // 4. Crop -> Order Relationship
         modelBuilder.Entity<Order>()
             .HasOne(o => o.Crop)
             .WithMany()

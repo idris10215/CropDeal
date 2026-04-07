@@ -6,5 +6,5 @@ public class CropCreateDto
     public string Category { get; set; } = string.Empty;
     public decimal Price { get; set; }
     public int Quantity { get; set; }
-    public int SellerId { get; set; } // Just the ID, nothing else!
+    public int SellerId { get; set; } 
 }

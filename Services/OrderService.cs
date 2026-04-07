@@ -23,7 +23,7 @@ public class OrderService : IOrderService
             Quantity = dto.Quantity,
             TotalAmount = dto.TotalAmount,
             OrderDate = DateTime.Now,
-            Status = "Pending" // Initial status
+            Status = "Pending"
         };
         await _orderRepo.AddOrderAsync(order);
         await _orderRepo.SaveChangesAsync();
